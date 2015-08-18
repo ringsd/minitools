@@ -129,7 +129,16 @@ int main(int argc, const char* argv[])
 		help();
 		return 0;
 	}
-	
+
+	//support window to drag
+	pp = (char**)(argv + 1);
+	if (*pp[0] != '-')
+	{
+		strcpy(in_path, *pp);
+		strcpy(out_path, in_path);
+		strcat(out_path, ".c");
+	}
+
 	for (pp = (char**)(argv + 1); *pp; pp++)
 	{
 		if (strcmp(*pp, "-o") == 0)
