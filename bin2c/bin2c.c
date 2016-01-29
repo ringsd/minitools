@@ -22,18 +22,21 @@
 #pragma warning(disable:4996)
 #endif
 
+#define USER_NAME       "Ringsd"
+
 static void help(void)
 {
 	puts("Using:");
 	puts("-i input file name");
 	puts("-o output file name");
+	puts("-s Var name, default is image_buffer");
 	puts("-r echo row has how many data, default is 16");
-	puts("Copyright (C) 2014-2015 Ringsd");
+	puts("Copyright (C) 2014-2016 " USER_NAME);
 }
 
 #define MAX_BUFFER_SIZE		1024
 
-int bin2c(char* in_path, char* out_path, int length)
+int bin2c(char* in_path, char* out_path, int length, char* var_name)
 {
 	int		ret = 0;
 	unsigned char	buffer[MAX_BUFFER_SIZE];
@@ -74,15 +77,15 @@ int bin2c(char* in_path, char* out_path, int length)
 			
 			fprintf( fout, "/********************************************************************************\n" );
 			fprintf( fout, "\tAutomatic Generation By bin2c.\n" );
-			fprintf( fout, "\tCopyright SmartAction Tech. %04d.\n\n", timeinfo->tm_year + 1900 );
+			fprintf( fout, "\tCopyright " USER_NAME ". %04d.\n\n", timeinfo->tm_year + 1900 );
 			fprintf( fout, "\tAll Rights Reserved.\n\n" );
 			fprintf( fout, "\tFile: %s\n\n", out_path );
 			fprintf( fout, "\tDescription:\n\n" );
 			fprintf( fout, "\tTIME LIST:\n" );
-			fprintf( fout, "\tCREATE By Ringsd   %04d/%02d/%02d %02d:%02d:%02d\n\n", timeinfo->tm_year + 1900, timeinfo->tm_mon + 1, timeinfo->tm_mday, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec );
+			fprintf( fout, "\tCREATE By " USER_NAME "   %04d/%02d/%02d %02d:%02d:%02d\n\n", timeinfo->tm_year + 1900, timeinfo->tm_mon + 1, timeinfo->tm_mday, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec );
 			fprintf( fout, "********************************************************************************/\n\n" );
-			fprintf(fout, "static int image_buffer_size = %d;\n", image_buffer_size);
-			fprintf(fout, "static unsigned char image_buffer[] = {\n");
+			fprintf(fout, "static int %s_size = %d;\n", var_name, image_buffer_size);
+			fprintf(fout, "static unsigned char %s[] = {\n", var_name);
 			start = 0;
 		}
 
@@ -122,6 +125,7 @@ int main(int argc, const char* argv[])
 	char** 	pp = NULL;
 	char	in_path[512] = "xxx.bin";
 	char	out_path[512] = "xxx.c";
+	char	var_name[512] = "image_buffer";
 	int		length = 16;
 
 	if( argc == 1 )
@@ -130,6 +134,7 @@ int main(int argc, const char* argv[])
 		return 0;
 	}
 
+#ifdef WIN32
 	//support window to drag
 	pp = (char**)(argv + 1);
 	if (*pp[0] != '-')
@@ -138,6 +143,7 @@ int main(int argc, const char* argv[])
 		strcpy(out_path, in_path);
 		strcat(out_path, ".c");
 	}
+#endif
 
 	for (pp = (char**)(argv + 1); *pp; pp++)
 	{
@@ -153,6 +159,12 @@ int main(int argc, const char* argv[])
             if( *pp ) strcpy(in_path, *pp);
             else break;
         }
+		else if (strcmp(*pp, "-s") == 0)
+		{
+			pp++;
+			if (*pp) strcpy(var_name, *pp);
+			else break;
+		}
 		else if (strcmp(*pp, "-r") == 0)
 		{
 			pp++;
@@ -171,7 +183,7 @@ int main(int argc, const char* argv[])
 		length = 16;
 	}
 
-	bin2c(in_path, out_path, length);
+	bin2c(in_path, out_path, length, var_name);
 
 	return ret;
 }
