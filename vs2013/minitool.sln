@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GenWav", "..\GenWav\GenWav.vcxproj", "{10E43713-0C1F-4112-B0D3-CA2B15C4E094}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bin2c", "..\bin2c\vs2013\bin2c.vcxproj", "{76CE75A1-4681-4D5E-BF26-9103CB7ACD34}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "generate_wav", "..\generate_wav\generate_wav.vcxproj", "{10E43713-0C1F-4112-B0D3-CA2B15C4E094}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{10E43713-0C1F-4112-B0D3-CA2B15C4E094}.Debug|Win32.ActiveCfg = Debug|Win32
-		{10E43713-0C1F-4112-B0D3-CA2B15C4E094}.Debug|Win32.Build.0 = Debug|Win32
-		{10E43713-0C1F-4112-B0D3-CA2B15C4E094}.Release|Win32.ActiveCfg = Release|Win32
-		{10E43713-0C1F-4112-B0D3-CA2B15C4E094}.Release|Win32.Build.0 = Release|Win32
 		{76CE75A1-4681-4D5E-BF26-9103CB7ACD34}.Debug|Win32.ActiveCfg = Debug|Win32
 		{76CE75A1-4681-4D5E-BF26-9103CB7ACD34}.Debug|Win32.Build.0 = Debug|Win32
 		{76CE75A1-4681-4D5E-BF26-9103CB7ACD34}.Release|Win32.ActiveCfg = Release|Win32
 		{76CE75A1-4681-4D5E-BF26-9103CB7ACD34}.Release|Win32.Build.0 = Release|Win32
+		{10E43713-0C1F-4112-B0D3-CA2B15C4E094}.Debug|Win32.ActiveCfg = Debug|Win32
+		{10E43713-0C1F-4112-B0D3-CA2B15C4E094}.Debug|Win32.Build.0 = Debug|Win32
+		{10E43713-0C1F-4112-B0D3-CA2B15C4E094}.Release|Win32.ActiveCfg = Release|Win32
+		{10E43713-0C1F-4112-B0D3-CA2B15C4E094}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

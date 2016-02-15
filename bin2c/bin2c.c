@@ -27,11 +27,11 @@
 static void help(void)
 {
 	puts("Using:");
-	puts("-i input file name");
-	puts("-o output file name");
-	puts("-s Var name, default is image_buffer");
-	puts("-r echo row has how many data, default is 16");
-	puts("Copyright (C) 2014-2016 " USER_NAME);
+	puts("	-i input file name");
+	puts("	-o output file name");
+	puts("	-s Var name, default is image_buffer");
+	puts("	-r echo row has how many data, default is 16");
+	puts("	Copyright (C) 2014-2016 " USER_NAME);
 }
 
 #define MAX_BUFFER_SIZE		1024
