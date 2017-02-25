@@ -211,6 +211,11 @@ static int rebuild_update(char* in_path, char* out_path)
             }
         }
 
+#ifdef WIN32
+        strcat(path, "\\");
+#else
+        strcat(path, "/");
+#endif
         strcat(path, strrchr(cfg_item->value, '/') + 1);
 
         fp = fopen(path, "rb");
