@@ -1,16 +1,15 @@
 /*******************************************************************************
-	Copyright SmartAction Tech. 2014-2015.
-	All Rights Reserved.
+    Copyright Ringsd. 2017.
+    All Rights Reserved.
+    
+    File: bin2c.c
 
-	File: bin2c.c
+    Description:
 
-	Description:
-
-	TIME LIST:
-	CREATE By Ringsd   2015:06:29 09:31:10
+    TIME LIST:
+    CREATE By Ringsd   2017/02/25 10:19:34
 
 *******************************************************************************/
-
 
 #include <stdio.h>
 #include <string.h>
