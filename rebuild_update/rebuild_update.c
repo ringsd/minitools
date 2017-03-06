@@ -32,7 +32,8 @@ static void help(void)
 	puts("Using:");
 	puts("	-i input file name");
 	puts("	-o output file name");
-	puts("	-v version");
+    puts("	-x exclude file name");
+    puts("	-v version");
 	puts("	Copyright (C) 2017-2017 By:" USER_NAME " Version:" REBUILD_UPDATE);
 }
 
@@ -69,6 +70,10 @@ struct update_file_s{
     int update_item_count;
     struct update_item_s   update_item[MAX_ITEM_COUNT];
 };
+
+#define MAX_IGNORE_FILE_COUNT   10
+static const char* ignore_file[MAX_IGNORE_FILE_COUNT];
+static int ignore_file_count = 0;
 
 char* trim(char* str)
 {
@@ -236,8 +241,24 @@ static int rebuild_update(char* in_path, char* out_path)
         {
             struct cfg_item_s* cfg_item;
             int j = 0;
+            int ignore = 0;
 
             update_item = &update_file->update_item[i];
+
+            for (j = 0; j <ignore_file_count; j++)
+            {
+                if (strcmp(ignore_file[j], update_item->name) == 0)
+                {
+                    ignore = 1;
+                    break;
+                }
+            }
+
+            if (ignore)
+            {
+                continue;
+            }
+
             fprintf(fout, "%s={\n", update_item->name);
             for (j = 0; j<update_item->cfg_item_count; j++)
             {
@@ -294,6 +315,36 @@ int main(int argc, const char* argv[])
             pp ++;
             if( *pp ) strcpy(in_path, *pp);
             else break;
+        }
+        else if (strcmp(*pp, "-x") == 0)
+        {
+            pp++;
+            for (;;)
+            {
+                if (*pp)
+                {
+                    if (strncmp(*pp, "-", 1) == 0)
+                    {
+                        pp--;
+                        break;
+                    }
+                    else
+                    {
+                        if (ignore_file_count >= MAX_IGNORE_FILE_COUNT)
+                        {
+                            continue;
+                        }
+                        ignore_file[ignore_file_count] = *pp;
+                        ignore_file_count++;
+                    }
+                    pp++;
+                }
+                else
+                {
+                    pp--;
+                    break;
+                }
+            }
         }
 		else if (strcmp(*pp, "-v") == 0)
 		{
