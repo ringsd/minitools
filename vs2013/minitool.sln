@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "generate_wav", "..\generate
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rebuild_update", "..\rebuild_update\vs2013\rebuild_update.vcxproj", "{426349A3-0CA2-47AB-90B5-7312D4CDBA4C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dither565", "..\dither565\vs2013\dither565.vcxproj", "{926F5E07-1065-4795-AB4E-5C886966C2A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -27,6 +29,10 @@ Global
 		{426349A3-0CA2-47AB-90B5-7312D4CDBA4C}.Debug|Win32.Build.0 = Debug|Win32
 		{426349A3-0CA2-47AB-90B5-7312D4CDBA4C}.Release|Win32.ActiveCfg = Release|Win32
 		{426349A3-0CA2-47AB-90B5-7312D4CDBA4C}.Release|Win32.Build.0 = Release|Win32
+		{926F5E07-1065-4795-AB4E-5C886966C2A2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{926F5E07-1065-4795-AB4E-5C886966C2A2}.Debug|Win32.Build.0 = Debug|Win32
+		{926F5E07-1065-4795-AB4E-5C886966C2A2}.Release|Win32.ActiveCfg = Release|Win32
+		{926F5E07-1065-4795-AB4E-5C886966C2A2}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

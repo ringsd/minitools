@@ -140,7 +140,6 @@ static int rebuild_update(char* in_path, char* out_path)
     while( fgets(buf, MAX_BUFFER_SIZE-1, fin) )
     {
         int len = 0;
-        printf( "%s \n", buf );
 
         trim(buf);
         len = strlen(buf);
