@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rebuild_update", "..\rebuil
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dither565", "..\dither565\vs2013\dither565.vcxproj", "{926F5E07-1065-4795-AB4E-5C886966C2A2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libimage", "..\..\..\JZ\third_party\libimage\vs2010\libimage.vcxproj", "{BED769AE-D6D1-4AA3-8E22-5D6AB10B7B18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -33,6 +35,10 @@ Global
 		{926F5E07-1065-4795-AB4E-5C886966C2A2}.Debug|Win32.Build.0 = Debug|Win32
 		{926F5E07-1065-4795-AB4E-5C886966C2A2}.Release|Win32.ActiveCfg = Release|Win32
 		{926F5E07-1065-4795-AB4E-5C886966C2A2}.Release|Win32.Build.0 = Release|Win32
+		{BED769AE-D6D1-4AA3-8E22-5D6AB10B7B18}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BED769AE-D6D1-4AA3-8E22-5D6AB10B7B18}.Debug|Win32.Build.0 = Debug|Win32
+		{BED769AE-D6D1-4AA3-8E22-5D6AB10B7B18}.Release|Win32.ActiveCfg = Release|Win32
+		{BED769AE-D6D1-4AA3-8E22-5D6AB10B7B18}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
