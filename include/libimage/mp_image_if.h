@@ -27,7 +27,9 @@ typedef struct tag_mp_image_if{
 	void*	param2;//	the param for the open
 	void*	handle;//	for the operation function use
 	//the file operation function
-	int		flag; //	the operation style, read a image or write to a image
+	//	[1:0]the operation style, read a image or write to a image
+	//  [4:2]the color type
+	unsigned int flag;
 	void* (*open) ( const void* param1, const void* param2 );
 	int   (*tell) ( void *handle );
 	int   (*seek) ( void* handle, long offset, int fromwhere );
