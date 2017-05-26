@@ -134,54 +134,61 @@ int main(int argc, const char* argv[])
 		return 0;
 	}
 
-#ifdef WIN32
-	//support window to drag
-	pp = (char**)(argv + 1);
-	if (*pp[0] != '-')
-	{
-        char* s;
-        memset(in_path, 0, sizeof(in_path));
-        memset(out_path, 0, sizeof(out_path));
-		strcpy(in_path, *pp);
-        s = strrchr(*pp, '.');
-        if (s)
+    pp = (char**)(argv + 1);
+    if (*pp[0] == '-')
+    {
+        for (pp = (char**)(argv + 1); *pp; pp++)
         {
-            strncpy(out_path, *pp, s - *pp);
-            strcat(out_path, "_565");
-            strcat(out_path, s);
+            if (strcmp(*pp, "-o") == 0)
+            {
+                pp++;
+                if (*pp) strcpy(out_path, *pp);
+                else break;
+            }
+            else if (strcmp(*pp, "-i") == 0)
+            {
+                pp++;
+                if (*pp) strcpy(in_path, *pp);
+                else break;
+            }
+            else if (strcmp(*pp, "-v") == 0)
+            {
+                help();
+                return 0;
+            }
         }
-        else
-        {
-            strcpy(out_path, *pp);
-            strcat(out_path, "_565");
-        }
-	}
-#endif
 
-	for (pp = (char**)(argv + 1); *pp; pp++)
-	{
-		if (strcmp(*pp, "-o") == 0)
+        decode_image(in_path, out_path);
+    }
+    else
+    {
+        //support window to drag
+        int i = 0;
+        for (i = 1; i <argc; i++)
         {
-            pp ++;
-            if( *pp ) strcpy(out_path, *pp);
-            else break;
+            pp = (char**)(argv + i);
+            if (*pp[0] != '-')
+            {
+                char* s;
+                memset(in_path, 0, sizeof(in_path));
+                memset(out_path, 0, sizeof(out_path));
+                strcpy(in_path, *pp);
+                s = strrchr(*pp, '.');
+                if (s)
+                {
+                    strncpy(out_path, *pp, s - *pp);
+                    strcat(out_path, "_565");
+                    strcat(out_path, s);
+                }
+                else
+                {
+                    strcpy(out_path, *pp);
+                    strcat(out_path, "_565");
+                }
+                decode_image(in_path, out_path);
+            }
         }
-		else if (strcmp(*pp, "-i") == 0)
-        {
-            pp ++;
-            if( *pp ) strcpy(in_path, *pp);
-            else break;
-        }
-		else if (strcmp(*pp, "-v") == 0)
-		{
-			help();
-			return 0;
-		}
-	}
-
-    //dither565(in_path, out_path);
-
-    decode_image(in_path, out_path);
+    }
 
 	return ret;
 }
