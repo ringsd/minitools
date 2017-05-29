@@ -280,6 +280,7 @@ err1:
 int main(int argc, const char* argv[])
 {
 	int 	ret = 0;
+    int     md5 = 0;
 
 	char** 	pp = NULL;
 	char	in_path[512] = "update.txt";
@@ -350,9 +351,26 @@ int main(int argc, const char* argv[])
 			help();
 			return 0;
 		}
+        else if (strcmp(*pp, "-md5") == 0)
+        {
+            md5 = 1;
+        }
 	}
 
-    rebuild_update(in_path, out_path);
+    if (md5)
+    {
+        FILE* fd = fopen(in_path, "rb");
+        if (fd)
+        {
+            char md5_sum[128];
+            md5sum(fd, in_path, 1, md5_sum);
+            fclose(fd);
+        }
+    }
+    else
+    {
+        rebuild_update(in_path, out_path);
+    }
 
 	return ret;
 }
