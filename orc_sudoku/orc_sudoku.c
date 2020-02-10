@@ -59,20 +59,15 @@ static void gray_image(const char* in_file, const char* out_file)
 
 	file.open = fopen;
 	file.close = fclose;
-	file.read = fread;
-	file.write = fwrite;
+	file.read = (int(*) (void* buffer, int size, int count, void *handle))fread;
+	file.write = (int(*)(void* buffer, int size, int count, void *handle))fwrite;
 	file.seek = fseek;
 	file.tell = ftell;
-	file.param1 = in_file;
+	file.param1 = (void*)in_file;
 	file.param2 = "rb";
 
-	file_new.open = fopen;
-	file_new.close = fclose;
-	file_new.read = fread;
-	file_new.write = fwrite;
-	file_new.seek = fseek;
-	file_new.tell = ftell;
-	file_new.param1 = out_file;
+	memcpy(&file_new, &file, sizeof(mp_image_if) );
+	file_new.param1 = (void*)out_file;
 	file_new.param2 = "wb";
 
 	image = mp_image_open(&file, MP_IMAGE_TYPE_UNKNOWN, MP_IMAGE_COLOR_MODE_ARGB, MP_IMAGE_FLAG_READ);
@@ -183,20 +178,15 @@ static void binarization_image(const char* in_file, const char* out_file)
 
 	file.open = fopen;
 	file.close = fclose;
-	file.read = fread;
-	file.write = fwrite;
+	file.read = (int(*) (void* buffer, int size, int count, void *handle))fread;
+	file.write = (int(*)(void* buffer, int size, int count, void *handle))fwrite;
 	file.seek = fseek;
 	file.tell = ftell;
-	file.param1 = in_file;
+	file.param1 = (void*)in_file;
 	file.param2 = "rb";
 
-	file_new.open = fopen;
-	file_new.close = fclose;
-	file_new.read = fread;
-	file_new.write = fwrite;
-	file_new.seek = fseek;
-	file_new.tell = ftell;
-	file_new.param1 = out_file;
+	memcpy(&file_new, &file, sizeof(mp_image_if));
+	file_new.param1 = (void*)out_file;
 	file_new.param2 = "wb";
 
 	image = mp_image_open(&file, MP_IMAGE_TYPE_UNKNOWN, MP_IMAGE_COLOR_MODE_ARGB, MP_IMAGE_FLAG_READ);
@@ -336,11 +326,13 @@ int __mb_cur_max(void)
 	return ___mb_cur_max_func();
 }
 
+#if 0
 #undef _pctype
 const unsigned short* _pctype(void)
 {
 	return __pctype_func();
 }
+#endif
 
 #undef _sys_nerr
 int * _sys_nerr(void)
