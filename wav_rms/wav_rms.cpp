@@ -5,6 +5,18 @@
 #include <stdio.h>
 #include "wav_file.h"
 
+#define REBUILD_UPDATE  "v0.1"
+#define USER_NAME       "Ringsd"
+
+static void help(void)
+{
+	puts("Using:");
+	puts("	-i input file name");
+	puts("	-o output file name");
+	puts("	-v version");
+	puts("	Copyright (C) 2017-2017 By:" USER_NAME " Version:" REBUILD_UPDATE);
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	FILE* fp = NULL;
