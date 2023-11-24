@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1000
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bin2c", "..\bin2c\vs2013\bin2c.vcxproj", "{76CE75A1-4681-4D5E-BF26-9103CB7ACD34}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dither565", "..\dither565\vs2013\dither565.vcxproj", "{926F5E07-1065-4795-AB4E-5C886966C2A2}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "orc_sudoku", "..\orc_sudoku\vs\orc_sudoku.vcxproj", "{3771B729-1794-48D1-87FB-1EBF921FDE3C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "filter_scale", "..\filter_scale\vs\filter_scale.vcxproj", "{290F2DE8-9758-4D9A-94B9-B00A7A8D6714}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{3771B729-1794-48D1-87FB-1EBF921FDE3C}.Debug|Win32.Build.0 = Debug|Win32
 		{3771B729-1794-48D1-87FB-1EBF921FDE3C}.Release|Win32.ActiveCfg = Release|Win32
 		{3771B729-1794-48D1-87FB-1EBF921FDE3C}.Release|Win32.Build.0 = Release|Win32
+		{290F2DE8-9758-4D9A-94B9-B00A7A8D6714}.Debug|Win32.ActiveCfg = Debug|Win32
+		{290F2DE8-9758-4D9A-94B9-B00A7A8D6714}.Debug|Win32.Build.0 = Debug|Win32
+		{290F2DE8-9758-4D9A-94B9-B00A7A8D6714}.Release|Win32.ActiveCfg = Release|Win32
+		{290F2DE8-9758-4D9A-94B9-B00A7A8D6714}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
