@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "orc_sudoku", "..\orc_sudoku
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "filter_scale", "..\filter_scale\vs\filter_scale.vcxproj", "{290F2DE8-9758-4D9A-94B9-B00A7A8D6714}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjpeg", "..\libjpeg\vs2010\libjpeg.vcxproj", "{825B7F83-F9FD-4E35-B4DF-829631E9F375}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -45,6 +47,10 @@ Global
 		{290F2DE8-9758-4D9A-94B9-B00A7A8D6714}.Debug|Win32.Build.0 = Debug|Win32
 		{290F2DE8-9758-4D9A-94B9-B00A7A8D6714}.Release|Win32.ActiveCfg = Release|Win32
 		{290F2DE8-9758-4D9A-94B9-B00A7A8D6714}.Release|Win32.Build.0 = Release|Win32
+		{825B7F83-F9FD-4E35-B4DF-829631E9F375}.Debug|Win32.ActiveCfg = Debug|Win32
+		{825B7F83-F9FD-4E35-B4DF-829631E9F375}.Debug|Win32.Build.0 = Debug|Win32
+		{825B7F83-F9FD-4E35-B4DF-829631E9F375}.Release|Win32.ActiveCfg = Release|Win32
+		{825B7F83-F9FD-4E35-B4DF-829631E9F375}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

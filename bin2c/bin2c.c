@@ -125,7 +125,7 @@ err1:
 	return ret;
 }
 
-static int anlogic_svf_process(FILE* fout, char* static_name, char* var_name, const char* svf_path)
+static int anlogic_svf_process(FILE* fout, char* static_name, char* var_name, const char* svf_path, int addr)
 {
 	int ret = 0;
 	FILE* fin = NULL;
@@ -143,9 +143,13 @@ static int anlogic_svf_process(FILE* fout, char* static_name, char* var_name, co
 	{
 		if (strncmp(buffer, "SDR 2088 TDI (", strlen("SDR 2088 TDI (")) == 0)
 		{
-			buffer[SVF_INDEX + 512] = 0;
-			fprintf(fout, "%sconst char* %s_verify = \"%s\";\n", static_name, var_name, &buffer[SVF_INDEX]);
-			break;
+			if(addr <= 0) 
+			{
+				buffer[SVF_INDEX + 512] = 0;
+				fprintf(fout, "%sconst char* %s_verify = \"%s\";\n", static_name, var_name, &buffer[SVF_INDEX]);
+				break;
+			}
+			addr --;
 		}
 	}
 #undef SVF_INDEX
@@ -156,7 +160,7 @@ err1:
 	return ret;
 }
 
-static int bin2c_anlogic_svf(char* in_path, char* out_path, int length, int is_static, char* var_name, const char* svf_path)
+static int bin2c_anlogic_svf(char* in_path, char* out_path, int length, int is_static, char* var_name, const char* svf_path, int addr)
 {
 	int		ret = 0;
 	unsigned char	buffer[MAX_BUFFER_SIZE];
@@ -206,7 +210,7 @@ static int bin2c_anlogic_svf(char* in_path, char* out_path, int length, int is_s
 			fprintf(fout, "\tCREATE By " USER_NAME "   %04d/%02d/%02d %02d:%02d:%02d\n\n", timeinfo->tm_year + 1900, timeinfo->tm_mon + 1, timeinfo->tm_mday, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
 			fprintf(fout, "********************************************************************************/\n\n");
 
-			anlogic_svf_process(fout, static_name, var_name, svf_path);
+			anlogic_svf_process(fout, static_name, var_name, svf_path, addr);
 
 			fprintf(fout, "%sint %s_size = %d;\n", static_name, var_name, image_buffer_size);
 			fprintf(fout, "%sunsigned char %s[] = {\n", static_name, var_name);
@@ -254,6 +258,7 @@ int main(int argc, const char* argv[])
 	int		length = 16;
 	int		bin2c_mode = 0;
 	int		is_static = 0;
+	int		svf_addr = 0;
 
 	if( argc == 1 )
 	{
@@ -309,6 +314,12 @@ int main(int argc, const char* argv[])
 			if (*pp) strcpy(svf_path, *pp);
 			else break;
 		}
+		else if (strcmp(*pp, "-addr") == 0)
+		{
+			pp++;
+			if (*pp) svf_addr = atoi(*pp);
+			else break;
+		}
 		else if (strcmp(*pp, "-v") == 0)
 		{
 			help();
@@ -324,7 +335,7 @@ int main(int argc, const char* argv[])
 	switch (bin2c_mode)
 	{
 		case BIN2C_MODE_ANLOGIC_SVF:
-			bin2c_anlogic_svf(in_path, out_path, length, is_static, var_name, svf_path);
+			bin2c_anlogic_svf(in_path, out_path, length, is_static, var_name, svf_path, svf_addr);
 			break;
 		default:
 			bin2c(in_path, out_path, length, is_static, var_name);
